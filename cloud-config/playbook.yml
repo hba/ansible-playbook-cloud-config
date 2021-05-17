@@ -1,0 +1,13 @@
+# https://cloudinit.readthedocs.io/en/latest/topics/modules.html
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Test if cgroup instruction in cmdline exist
+      copy:
+        dest: /Volumes/system-boot/cmdline.txt
+        content: dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=LABEL=writable rootfstype=ext4 elevator=deadline rootwait fixrtc quiet splash cgroup_enable=memory cgroup_memory=1
+
+    - name: Copy user data
+      template:
+        src: user-data.j2
+        dest: /Volumes/system-boot/user-data
