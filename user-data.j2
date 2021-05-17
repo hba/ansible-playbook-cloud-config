@@ -60,7 +60,7 @@ package_reboot_if_required: true
 
 ## Write arbitrary files to the file-system (including binaries!)
 write_files:
-- path: /etc/bash28.sh
+- path: /etc/firstrun.sh
   content: |
     #!/bin/bash
     macAdress=$(ip a |grep eth0: -A 1|grep link |awk '{print $2}')
@@ -104,12 +104,12 @@ write_files:
 ## Run arbitrary commands at rc.local like time
 runcmd:
 #- [ ls, -l, / ]
-- [ bash, /etc/bash28.sh ]
+- [ bash, /etc/firstrun.sh ]
 #- [ wget, "http://ubuntu.com", -O, /run/mydir/index.html ]
 
 disable_root: false
 ssh_authorized_keys:
-    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3XY244b119peg22WhTEwfnEdDcFjZCI660wTjko6B6r5WM22aPIQgJ+tO1f89jlhcIGcLq9FrxCuibqLKR+Uw2bh7TLFL2N2WxpdkDslHoW5tKtgZw1QJXjWBfoPMTl6gjYeDO5eEeDJmnHkOB6x5TLrZQkEjgI7fjSl2yT7RIwILDIBdHk2fAV6y47q8wHCUgSSHWisCG0e7TjLmPqFODgmTfWb63SPiZXNEHoosSi7NN2j+ucWyLYRI42h/VXHjwapbT0rhrZjPENEuxQre6j0SaoGpsV+YTNM3/LdXMvLD6uMu77mK6YlCw+nmy3GJMnjMJwYVMVBZQrgBFOZR hervebalderacchi@MBA Hervé
+    - ssh-rsa key info
 
 
 power_state:
