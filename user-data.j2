@@ -60,20 +60,32 @@ package_reboot_if_required: true
 
 ## Write arbitrary files to the file-system (including binaries!)
 write_files:
-- path: /etc/firstrun.sh
+- path: /etc/bash28.sh
   content: |
     #!/bin/bash
     macAdress=$(ip a |grep eth0: -A 1|grep link |awk '{print $2}')
     macAdress=$(echo ${macAdress^^})
     case $macAdress in
-      XX:XX:XX:XX:XX:XX)
+      B8:27:EB:58:04:32)
         hostnamectl set-hostname pi2orange
         ;;	
-      XX:XX:XX:XX:XX:XX)
+      DC:A6:32:D5:DC:7B)
         hostnamectl set-hostname pi4blue
         ;;	  
-      XX:XX:XX:XX:XX:XX)
+      DC:A6:32:D5:DD:05)
         hostnamectl set-hostname pi4red
+        ;;	  
+      B8:27:EB:E8:59:1F)
+        hostnamectl set-hostname pi3green
+        ;;	
+      B8:27:EB:68:68:CF)
+        hostnamectl set-hostname pi2yellow
+        ;;	
+      00:11:32:0C:AF:E4)
+        hostnamectl set-hostname synology
+        ;;	
+      B8:27:EB:A3:8D:2B)
+        hostnamectl set-hostname pi1pink
         ;;	  
       *)
         echo "Sorry, I don't understand"
@@ -104,13 +116,12 @@ write_files:
 ## Run arbitrary commands at rc.local like time
 runcmd:
 #- [ ls, -l, / ]
-- [ bash, /etc/firstrun.sh ]
+- [ bash, /etc/bash28.sh ]
 #- [ wget, "http://ubuntu.com", -O, /run/mydir/index.html ]
 
 disable_root: false
 ssh_authorized_keys:
-    - ssh-rsa key info
-
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQD0Ka+zZe6UMS0BBjNXRu10MQDnYiff+mKv70zL0cHt63nYS1PG0ClTmNL24Vju8K0CYjLq3sNnvWDmRFIkV8EYd4UNn92Ri/j8RjZN+vTbBYPVGZPpSBsbWU9VkiYYCgFZnac3qQ5OCNJCgdnppryza421b3Mt5RNdHlSonQf9kwYys42q/0FbznLB4PhDiSjNRz913TUnyZ6WnuezoO9MwDnY7zXtLwuV4VtFZEfaUTSRKWZtYrgrDRxn8UqBZovvndd8awfIcLOm+I6fDyybVByOtwzd48RsoIjKsGVNpsuQblYxLLobaJ9TiPxnmMIlohZzUjQTnt6nXqzdnWgBRt9vdj4NmXqpJUOgOPgD6vZST8iTI7tFchwMFiV/ZOZWaG6LW2U4HqbauMZxDrjF29tP/tcOjFmlTD4bJbnhjPeQQmTyRAmFGre1aCNoAfcdyNA//i5vcmLwksGfxf7Xghs3IOmzGThzwwuLlrSi9yOOzmFFOkXJxfJmPN8BZUE= hervebalderacchi@MacBookAirHba.local
 
 power_state:
   delay: "+7"

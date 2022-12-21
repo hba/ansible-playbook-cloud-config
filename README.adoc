@@ -1,17 +1,11 @@
 
-== cloud-config
-
 Use Rasberry Py Imager
 Run this script
 ----
 ./run.sh
 ----
 
-== Post-installation
-
-
-----
-run /etc/bash28.sh
-apt update
-apt upgrade -y
-----
+Post-installation
+- run /etc/bash28.sh
+- apt update
+- apt upgrade -y
